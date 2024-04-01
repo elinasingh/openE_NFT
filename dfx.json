@@ -1,0 +1,29 @@
+{
+  "canisters": {
+    "openE_backend": {
+      "main": "src/openE_backend/main.mo",
+      "type": "motoko"
+    },
+    "openE_frontend": {
+      "dependencies": [
+        "openE_backend"
+      ],
+      "frontend": {
+        "entrypoint": "src/openE_frontend/src/index.html"
+      },
+      "source": [
+        "src/openE_frontend/assets",
+        "dist/openE_frontend/"
+      ],
+      "type": "assets"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
