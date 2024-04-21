@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { openE_backend } from "../../../declarations/openE_backend";
 import { Principal } from "@dfinity/principal";
-
+import Item from "./Item";
 function Minter() {
 
   const {register, handleSubmit} = useForm();
+  const [nftPrincipal, setNFTPrincipal] = useState("");
+  const [loaderHidden, setLoaderHidden] = useState(true);
 
   async function onSubmit(data) {
+    setLoaderHidden(false);
     // console.log(data.name);
     // console.log(data.image);
     const name = data.name;
@@ -17,11 +20,21 @@ function Minter() {
     
     const newNFTID = await openE_backend.mint(imageByteData, name);
     console.log(newNFTID.toText());
+    setNFTPrincipal(newNFTID);
+    setLoaderHidden(true);
 
   }
 
+  if (nftPrincipal == "") {
   return (
     <div className="minter-container">
+      <div hidden={loaderHidden} className="lds-ellipsis">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+
       <h3 className="makeStyles-title-99 Typography-h3 form-Typography-gutterBottom">
         Create NFT
       </h3>
@@ -57,6 +70,18 @@ function Minter() {
       </form>
     </div>
   );
+} else {
+  return (
+  <div className="minter-container">
+  <h3 className="Typography-root makeStyles-title-99 Typography-h3 form-Typography-gutterBottom">
+    Minted!
+  </h3>
+  <div className="horizontal-center">
+    <Item id={nftPrincipal.toText()} />
+  </div>
+  </div>
+  )
+}
 }
 
 export default Minter;
