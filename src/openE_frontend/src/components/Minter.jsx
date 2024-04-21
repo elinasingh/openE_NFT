@@ -1,5 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { openE_backend } from "../../../declarations/openE_backend";
+import { Principal } from "@dfinity/principal";
 
 function Minter() {
 
@@ -7,7 +9,15 @@ function Minter() {
 
   async function onSubmit(data) {
     // console.log(data.name);
-    console.log(data.image);
+    // console.log(data.image);
+    const name = data.name;
+    const image = data.image[0];
+    const imageArray = await image.arrayBuffer();
+    const imageByteData = [...new Uint8Array(imageArray)];
+    
+    const newNFTID = await openE_backend.mint(imageByteData, name);
+    console.log(newNFTID.toText());
+
   }
 
   return (
