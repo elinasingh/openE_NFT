@@ -13,8 +13,8 @@ actor OpenE{
         Cycles.add(100_500_000_000 : Nat);
         let newNFT = await NFTActorClass.NFT(name, owner, imgData);
         Debug.print(debug_show(Cycles.balance()));
-        let newCFTPrincipal = await newNFT.getCanisterId();
+        let newNFTPrincipal = await newNFT.getCanisterId();
 
-        return newCFTPrincipal;
+        return newNFTPrincipal;
     }
 };
