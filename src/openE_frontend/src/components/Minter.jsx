@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { openE_backend } from "../../../declarations/openE_backend";
 import { Principal } from "@dfinity/principal";
 import Item from "./Item";
+
 function Minter() {
 
   const {register, handleSubmit} = useForm();
@@ -80,7 +81,7 @@ function Minter() {
     <Item id={nftPrincipal.toText()} />
   </div>
   </div>
-  )
+  );
 }
 }
 

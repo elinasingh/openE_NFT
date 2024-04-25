@@ -12,7 +12,7 @@ function Gallery(props) {
         props.ids.map( (NFTId) => (
           <Item id= {NFTId} key={NFTId.toText()} />
         ))
-      )
+      );
     }
   }
 
