@@ -7,14 +7,13 @@ import Minter from "./Minter";
 
 function App() {
 
-  // const NFTID = "by6od-j4aaa-aaaaa-qaadq-cai";
+  // const NFTID = "bkyz2-fmaaa-aaaaa-qaaaq-cai";
   
   return (
     <div className="App">
       <Header />
       {/* <Minter /> */}
       {/* <Item id={NFTID} /> */}
-
       <Footer />
     </div>
   );

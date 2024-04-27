@@ -10,7 +10,7 @@ function Button(props) {
               Sell
             </span>
             </div>
-    )
+    );
 }
 
 export default Button;

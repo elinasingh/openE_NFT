@@ -14,7 +14,7 @@ function Item(props) {
 
   const id = props.id;
 
-  const localHost = "http://127.0.0.1:4943/?canisterId=asrmz-lmaaa-aaaaa-qaaeq-cai";
+  const localHost = "http://127.0.0.1:4943/?canisterId=be2us-64aaa-aaaaa-qaabq-cai";
   const agent = new HttpAgent({host: localHost}) ;
 
   async function loadNFT() {
@@ -55,7 +55,7 @@ function Item(props) {
         />
         <div className="disCardContent-root">
           <h2 className="disTypography-root makeStyles-bodyText-24 disTypography-h5 disTypography-gutterBottom">
-            {name}<span className="purple-text"></span>
+          {name}<span className="purple-text"></span>
           </h2>
           <p className="disTypography-root makeStyles-bodyText-24 disTypography-body2 disTypography-colorTextSecondary">
             Owner: {owner}

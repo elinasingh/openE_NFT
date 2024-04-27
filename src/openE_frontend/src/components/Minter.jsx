@@ -29,12 +29,12 @@ function Minter() {
   if (nftPrincipal == "") {
   return (
     <div className="minter-container">
-      <div hidden={loaderHidden} className="lds-ellipsis">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
+       <div hidden={loaderHidden} className="lds-ellipsis">
+         <div></div>
+         <div></div>
+         <div></div>
+         <div></div>
+       </div>
 
       <h3 className="makeStyles-title-99 Typography-h3 form-Typography-gutterBottom">
         Create NFT

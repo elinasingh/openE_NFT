@@ -22,7 +22,7 @@ function Header() {
   }, []);
 
   return (
-    <BrowserRouter forceRefresh={true}>
+    <BrowserRouter>
     <div className="app-root-1">
       <header className="Paper-root AppBar-root AppBar-positionStatic AppBar-colorPrimary Paper-elevation4">
         <div className="Toolbar-root Toolbar-regular header-appBar-13 Toolbar-gutters">
@@ -52,9 +52,9 @@ function Header() {
         </div>
       </header>
     </div>
-    <Switch>
+     <Switch>
       <Route exact path="/">
-       <img className="bottom-space" src={homeImage} />
+        <img className="bottom-space" src={homeImage} />
       </Route>
       <Route path="/discover">
         <h1>Discover</h1>
@@ -65,7 +65,7 @@ function Header() {
       <Route path="/collection">
         {userOwnedGallery}
       </Route>
-    </Switch>
+     </Switch>
     </BrowserRouter>
   );
 }
