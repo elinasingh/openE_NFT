@@ -4,6 +4,7 @@ import { Actor, HttpAgent } from "@dfinity/agent";
 import { idlFactory } from "../../../declarations/nft";
 import { Principal } from "@dfinity/principal";
 import Button from "./Button";
+import { openE_backend } from "../../../declarations/openE_backend";
 
 function Item(props) {
 
@@ -54,8 +55,14 @@ function Item(props) {
       onChange={(e) => price=e.target.value}
     />
   );
-  setButton(<Button handleClick={handleSell} text={"Confirm"}/>);
+  setButton(<Button handleClick={sellItem} text={"Confirm"}/>);
 
+  }
+
+  async function sellItem() {
+    console.log("Set price = " + price);
+    const listingResult = await openE_backend.listItem(props.id, Number(price));
+    console.log("listing: " + listingResult);
   }
 
   return (
