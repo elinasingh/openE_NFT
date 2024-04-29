@@ -14,6 +14,7 @@ function Item(props) {
   const [button, setButton] = useState();
   const [priceInput, setPriceInput] = useState();
   const [loaderHidden, setLoaderHidden] = useState(true);
+  const [blur, setBlur] = useState();
 
   const id = props.id;
 
@@ -64,6 +65,7 @@ function Item(props) {
   }
 
   async function sellItem() {
+    setBlur({filter: "blur(4px)"});
     setLoaderHidden(false);
     console.log("Set price = " + price);
     const listingResult = await openE_backend.listItem(props.id, Number(price));
@@ -87,6 +89,7 @@ function Item(props) {
         <img
           className="disCardMedia-root makeStyles-image-19 disCardMedia-media disCardMedia-img"
           src={image}
+          style={blur}
         />
         <div className="lds-ellipsis" hidden={loaderHidden}>
           <div></div>
