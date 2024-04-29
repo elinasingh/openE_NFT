@@ -72,5 +72,9 @@ actor OpenE{
             return "You don't own the NFT."
         }
 
+    };
+
+    public query func getOpenECanisterID() : async Principal{
+        return Principal.fromActor(OpenE);
     }
 };

@@ -18,9 +18,12 @@ function Item(props) {
 
   const localHost = "http://127.0.0.1:4943/?canisterId=be2us-64aaa-aaaaa-qaabq-cai";
   const agent = new HttpAgent({host: localHost}) ;
+  //TODO: When Deploy Live, remove the following line
+  agent.fetchRootKey();
+  let NFTActor;
 
   async function loadNFT() {
-    const NFTActor = await Actor.createActor(idlFactory, {
+    NFTActor = await Actor.createActor(idlFactory, {
       agent,
       canisterId: id,
     });
@@ -63,6 +66,11 @@ function Item(props) {
     console.log("Set price = " + price);
     const listingResult = await openE_backend.listItem(props.id, Number(price));
     console.log("listing: " + listingResult);
+    if(listingResult == "Success") {
+      const openEId = await openE_backend.getOpenECanisterID();
+      const transferResult =  await NFTActor.transferOwnership(openEId);
+      console.log("transfer: " + transferResult);
+    }
   }
 
   return (
