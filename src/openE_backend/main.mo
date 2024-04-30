@@ -76,5 +76,13 @@ actor OpenE{
 
     public query func getOpenECanisterID() : async Principal{
         return Principal.fromActor(OpenE);
+    };
+
+    public query func isListed(id: Principal) : async Bool {
+        if (mapOfListings.get(id) == null) {
+            return false;
+        } else {
+            return true;
+        }
     }
 };
