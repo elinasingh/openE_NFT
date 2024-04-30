@@ -6,6 +6,7 @@ import { Principal } from "@dfinity/principal";
 import Button from "./Button";
 import { openE_backend } from "../../../declarations/openE_backend";
 import CURRENT_USER_ID from "../index";
+import PriceLabel from "./PriceLable";
 
 function Item(props) {
 
@@ -17,6 +18,7 @@ function Item(props) {
   const [loaderHidden, setLoaderHidden] = useState(true);
   const [blur, setBlur] = useState();
   const [sellStatus, setSellStatus] = useState();
+  const [priceLabel, setPriceLabel] = useState();
 
   const id = props.id;
 
@@ -59,6 +61,9 @@ function Item(props) {
       if(originalOwner.toText() != CURRENT_USER_ID.toText()) {
         setButton(<Button handleClick={handleBuy} text={"Buy"}/>);
       }
+
+      const price = await openE_backend.getListedNFTPrice(props.id);
+      setPriceLabel(<PriceLabel sellPrice={price.toString()} />);
 
     }
 
@@ -122,6 +127,7 @@ function Item(props) {
           <div></div>
         </div>
         <div className="disCardContent-root">
+          {priceLabel}
           <h2 className="disTypography-root makeStyles-bodyText-24 disTypography-h5 disTypography-gutterBottom">
           {name}
           <span className="purple-text"> {sellStatus}</span>
