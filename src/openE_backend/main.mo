@@ -4,8 +4,8 @@ import Nat8 "mo:base/Nat8";
 import Debug "mo:base/Debug";
 import HashMap "mo:base/HashMap";
 import List "mo:base/List";
+import Iter "mo:base/Iter";
 import NFTActorClass "../NFT/nft";
-
 
 actor OpenE{
 
@@ -52,6 +52,11 @@ actor OpenE{
         };
 
         return List.toArray(userNFTs);
+    };
+
+    public query func getListedNFTs() : async [Principal] {
+        let ids = Iter.toArray(mapOfListings.keys());
+        return ids;
     };
 
     public shared(msg) func listItem(id: Principal, price: Nat) : async Text{
