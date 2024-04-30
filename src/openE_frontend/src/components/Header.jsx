@@ -15,11 +15,11 @@ function Header() {
   async function getNFTs() {
     const userNFTIds =  await openE_backend.getOwnedNFTs(CURRENT_USER_ID);
     console.log(userNFTIds);
-    setOwnedGallery(<Gallery title="MY NFTs" ids={userNFTIds} />);
+    setOwnedGallery(<Gallery title="MY NFTs" ids={userNFTIds} role="collection" />);
 
     const listedNFTIds = await openE_backend.getListedNFTs();
     console.log(listedNFTIds);
-    setListingGallery(<Gallery title="Discover" ids={listedNFTIds} /> );
+    setListingGallery(<Gallery title="Discover" ids={listedNFTIds} role="discover" /> );
   };
 
   useEffect(() => {

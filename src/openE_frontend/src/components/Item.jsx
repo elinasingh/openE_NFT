@@ -5,6 +5,7 @@ import { idlFactory } from "../../../declarations/nft";
 import { Principal } from "@dfinity/principal";
 import Button from "./Button";
 import { openE_backend } from "../../../declarations/openE_backend";
+import CURRENT_USER_ID from "../index";
 
 function Item(props) {
 
@@ -43,14 +44,22 @@ function Item(props) {
     setOwner(owner.toText());
     setImage(image);
 
-    const nftIsListed = await openE_backend.isListed(props.id);
+    if (props.role == "collection") {
+      const nftIsListed = await openE_backend.isListed(props.id);
     
-    if (nftIsListed) {
-      setOwner("openE");
-      setBlur({filter: "blur(4px)"});
-      setSellStatus("Listed");
-    } else {
-      setButton(<Button handleClick={handleSell} text={"Sell"}/>);
+      if (nftIsListed) {
+        setOwner("openE");
+        setBlur({filter: "blur(4px)"});
+        setSellStatus("Listed");
+      } else {
+        setButton(<Button handleClick={handleSell} text={"Sell"}/>);
+      }
+    } else if (props.role == "discover") {
+      const originalOwner = await openE_backend.getOriginalOwner(props.id);
+      if(originalOwner.toText() != CURRENT_USER_ID.toText()) {
+        setButton(<Button handleClick={handleBuy} text={"Buy"}/>);
+      }
+
     }
 
   }
@@ -92,6 +101,10 @@ function Item(props) {
         setSellStatus("Listed");
       }
     }
+  }
+
+  async function handleBuy() {
+    console.log("Buy was triggered");
   }
 
   return (

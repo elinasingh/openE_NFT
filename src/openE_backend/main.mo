@@ -89,5 +89,13 @@ actor OpenE{
         } else {
             return true;
         }
+    };
+
+    public query func getOriginalOwner(id: Principal) :async Principal {
+        var listing : Listing = switch (mapOfListings.get(id)) {
+            case null return Principal.fromText("");
+        };
+
+        return listing.itemOwner;
     }
 };
